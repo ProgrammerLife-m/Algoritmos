@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main(void)
+{
+
+    int qTestes, i, soma;
+    char valor;
+
+    scanf("%d ", &qTestes);
+
+    for (i = 0; i < qTestes; i++)
+    {
+        valor = getchar();
+		    printf("%d\n", valor);
+        soma = 0;
+
+        while (valor != '\n' && valor != ' ')
+        {
+
+            switch (valor)
+            {
+
+            case 48:
+            case 54:
+            case 57:
+                soma = soma + 6;
+                break;
+            case 49:
+                soma = soma + 2;
+                break;
+            case 50:
+            case 51:
+            case 53:
+                soma = soma + 5;
+                break;
+            case 52:
+                soma = soma + 4;
+                break;
+            case 55:
+                soma = soma + 3;
+                break;
+            case 56:
+                soma = soma + 7;
+                break;
+            }
+            valor = getchar();
+        }
+        printf("%d\n", soma);
+    }
+
+    return 0;
+}
