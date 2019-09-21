@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main(void)
+{
+    int mes, ano;
+
+    scanf("%d%d", &mes, &ano);
+
+    while ((mes != 0) && (ano != 0))
+    {
+        switch (mes)
+        {
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+            printf("31\n");
+            break;
+
+        case 2:
+            if (ano % 4 == 0)
+            {
+                if ((ano % 100 != 0) || (ano % 400 == 0))
+                {
+                    printf("29\n");
+                }
+                else
+                {
+                    printf("28\n");
+                }
+            }
+            else
+            {
+                printf("28\n");
+            }
+
+            break;
+
+        case 4:
+        case 6:
+        case 9:
+        case 11:
+            printf("30\n");
+            break;
+        }
+        scanf("%d%d", &mes, &ano);
+    }
+    return 0;
+}
