@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+//int primo(int);
+
+int primo(int a)
+{
+    int resposta, i;
+    bool ehPrimo = true;
+
+    if (a == 2)
+    {
+        resposta = 1;
+    }
+    else if (a > 2)
+    {
+        for (i = 2; i < a; i++)
+        {
+            if (a % i != 0 && ehPrimo)
+            {
+                resposta = 1;
+            }
+            else
+            {
+                resposta = 0;
+                ehPrimo = false;
+            }
+        }
+    }
+    else if (a <= 0)
+    {
+        resposta = 0;
+    }
+    return resposta;
+}
+void primoGemeos(int a, int b)
+{
+
+    if ((primo(a) == 1) && (primo(b) == 1) && (b - a == 2))
+    {
+        printf("Sao primos gemeos.\n");
+    }
+    else
+    {
+        printf("Nao sao primos gemeos.\n");
+    }
+}
+
+int main()
+{
+    int a, b;
+
+    scanf("%d%d", &a, &b);
+
+    primoGemeos(a, b);
+}
