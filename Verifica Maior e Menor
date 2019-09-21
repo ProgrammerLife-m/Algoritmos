@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(){
+	int numA, quant, menor, cont, maior;
+	scanf("%d%d", &quant, &numA);
+	
+	menor = numA;
+	maior = numA;
+	
+	for(cont = 0; cont < quant - 1; cont++){
+		scanf("%d", &numA);
+		
+		if(numA < menor){
+			menor = numA;
+		}
+		if(numA > maior){
+			maior = numA;
+		}
+		
+	}
+	printf("%d %d", menor, maior);
+	
+	return 0;
+}
