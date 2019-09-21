@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int con(int n);
+
+int main(void)
+{
+	int num;
+
+	scanf("%d", &num);
+
+	printf("%d", con(num));
+}
+
+int con(int n)
+{
+	int cont = 0;
+	
+	while(n > 1){
+		if(n % 2 == 0)
+		{
+			n = n/2;
+		}
+		else
+		{
+			n = 3*n + 1;
+		}	
+		cont += 1;
+	}
+	return cont;
+}
