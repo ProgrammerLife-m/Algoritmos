@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <math.h>
+
+void recursao(int num, int *pcontA)
+{
+	if (num > 0)
+	{
+		(*pcontA) ++;//conta digitos
+
+		recursao(num / 10, pcontA);
+
+		/*if (*pcontA == 4 || *pcontA == 7 || *pcontA == 10)//na posicao 4, 7 e 10 imprime o numero e depois o ponto
+		{
+			printf("%d", num % 10);
+			printf(".");
+		}
+		else//imprime os demais digitos
+		{
+			printf("%d", num % 10);
+		}*/
+    
+    //***************Forma mais fácil**************
+		(*pcontA)--;
+		printf("%d", num % 10);
+		if(*pcontA % 3 == 0 && *pcontA != 0){
+			printf("*");
+		}
+		
+
+	}
+}
+
+int main(void)
+{
+	int num, contA = 0;
+
+	while (scanf("%d", &num) != EOF) //casos: 1 10 100 1000 10000 100000 1000000 10000000 100000000 10000000000
+	{
+		if (num == 0)
+		{
+			printf("0");
+		}
+		else
+		{
+			recursao(num, &contA);
+		}
+		printf("\n");
+
+		contA = 0;
+	}
+}
