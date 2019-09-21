@@ -1,0 +1,152 @@
+#include <stdio.h>
+#include <stdbool.h>
+void piramide(int);
+void triangulo(int);
+void losango(int);
+void quadrado(int);
+
+
+void main(void)
+{
+	int nivel;
+
+	scanf("%d", &nivel);
+
+	while (nivel != 0)
+	{
+		piramide(nivel);
+		triangulo(nivel);
+		losango(nivel);
+		quadrado(nivel);
+		scanf("%d", &nivel);
+	}
+}
+void piramide(int nivel)
+{
+	int l, c = 1, aux, aux2, aux3;
+
+	printf("Piramide, nivel %d \n", nivel);
+
+	for (l = 1; l <= nivel; l++)
+	{
+		aux = c;
+		aux2 = (nivel - l);
+		while(aux2 >= 1)
+		{
+			printf(".");
+			aux2--;
+		}
+		while(aux >= 1)
+		{
+			printf("*");
+			aux--;
+		}
+		aux3 = (nivel - l);
+		while(aux3 >= 1)
+		{
+			printf(".");
+			aux3--;
+		}
+		c += 2;
+		printf("\n");
+	}
+}
+void triangulo(int nivel)
+{
+	int l, c = 1, aux, aux2;
+
+	printf("Triangulo, nivel %d \n", nivel);
+
+	for (l = 1; l <= nivel; l++)
+	{
+		aux = c;
+		aux2 = nivel - l;
+		while(aux >= 1)
+		{
+			printf("*");
+			aux--;
+		}
+		while(aux2 >= 1)
+		{
+			printf(".");
+			aux2--;
+		}
+		c += 1;
+		printf("\n");
+	}
+}
+void losango(int nivel) //falta terminar
+{
+	int l, c = 1, d = (2 * nivel - 1), e = 1, aux = 0, aux2 = 0, aux3 = 0;
+
+	printf("Losango, nivel %d \n", nivel);
+
+	for (l = 1; l < nivel; l++)
+	{
+		aux = c;
+		aux2 = (nivel - l);
+		while (aux2 >= 1)
+		{
+			printf(".");
+			aux2--;
+		}
+		while (aux >= 1)
+		{
+			printf("*");
+			aux--;
+		}
+		aux3 = (nivel - l);
+		while (aux3 >= 1)
+		{
+			printf(".");
+			aux3--;
+		}
+		c += 2;
+		printf("\n");
+	}
+	for (l = 1; l <= nivel; l++)
+	{
+		aux = e;
+		aux2 = d;
+		aux3 = e;
+		while (aux > 1)
+		{
+			printf(".");
+			aux--;
+		}
+		while (aux2 >= 1)
+		{
+			printf("*");
+			aux2--;
+		}
+		while (aux3 > 1)
+		{
+			printf(".");
+			aux3--;
+		}
+		d -= 2;
+		e += 1;
+		printf("\n");
+	}
+}
+void quadrado(int nivel)
+{
+	int l, c;
+
+	printf("Quadrado, nivel %d \n", nivel);
+
+	for (l = 1; l <= nivel; l++)
+	{
+		for(c = 1; c <= nivel; c++)
+		{
+			if(l == 1 || l == nivel || c == 1 || c == nivel)
+			{
+				printf("*");
+			}
+			else{
+				printf(".");
+			}
+		}
+		printf("\n");
+	}
+}
