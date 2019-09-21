@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+void main(void){
+   int num;
+	
+	scanf("%d", &num);
+	
+	printf("%c", num);
+ }
