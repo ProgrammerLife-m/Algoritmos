@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main(void)
+{
+	char string;
+	int cont = 0;
+	
+	string = getchar();
+	
+	while(string != EOF)
+	{
+		if(string == '"' && cont % 2 == 0)
+		{
+			printf("``");
+			cont++;
+		}
+		else if(string == '"' && cont % 2 != 0)
+		{
+			printf("''");	
+			cont++;
+		} else {
+			printf("%c", string);
+		}
+		string = getchar();
+	}
+	return 0;
+}
