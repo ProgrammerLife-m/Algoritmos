@@ -1,0 +1,59 @@
+#include <stdio.h>
+int main(){  
+
+	int reais, aux, aux2, centavos; 
+
+	scanf("%d%*c%d",&reais, ¢avos); 
+	//printf("m%d c%d\n", reais, centavos);
+	//Notas
+	printf("NOTAS:\n");
+	aux = reais / 100;
+	reais = reais%100;  
+	printf("%d nota(s) de R$ 100.00\n", aux);  
+
+	aux = reais / 50;  
+	reais = reais%50;   
+	printf("%d nota(s) de R$ 50.00\n", aux); 
+
+	aux = reais / 20;  
+	reais = reais%20; 
+	printf("%d nota(s) de R$ 20.00\n", aux);  
+
+	aux = reais / 10;  
+	reais = reais%10;  
+	printf("%d nota(s) de R$ 10.00\n", aux); 
+
+	aux = reais / 5;  
+	reais = reais%5;  
+	printf("%d nota(s) de R$ 5.00\n", aux); 
+
+	aux = reais / 2;  
+	reais = reais%2;  
+	printf("%d nota(s) de R$ 2.00\n", aux);  
+	
+	//Moedas
+	printf("MOEDAS:\n");
+	aux2 = reais / 1;
+	printf("%d moeda(s) de R$ 1.00\n", aux2); 
+	
+	aux2 = centavos / 50;  
+	centavos = centavos%50;  
+	printf("%d moeda(s) de R$ 0.50\n", aux2); 
+
+	aux2 = centavos / 25;  
+	centavos = centavos%25;    
+	printf("%d moeda(s) de R$ 0.25\n", aux2);  
+
+	aux2 = centavos / 10;  
+	centavos = centavos%10;   
+	printf("%d moeda(s) de R$ 0.10\n", aux2);  
+
+	aux2 = centavos / 5;  
+	centavos = centavos%5;    
+	printf("%d moeda(s) de R$ 0.05\n", aux2);
+	
+	aux2 = centavos / 1;   
+	printf("%d moeda(s) de R$ 0.01\n", aux2);
+	
+	return 0;
+}
