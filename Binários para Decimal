@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+int binarios()
+{
+    int soma, i, k;
+    char valor, vet[30];
+
+    for (i = 0; i < 30; i++) //inicializa vetor com o caractere 0
+    {
+        vet[i] = '0';
+    }
+
+    valor = getchar(); //faz a leitura das entradas
+
+    i = 0;
+    while (valor != '\n' && valor != ' ' && i < 30) //coloca cada digito em um vetor com 30 posicoes
+    {
+        if (valor == '1')
+        {
+            vet[i] = '1';
+        }
+        i++;
+        valor = getchar(); //continua realizando a leitura
+    }
+
+    soma = 0;
+    for (k = i - 1; k >= 0; k--) //realiza a conversao dos caracteres da direita para a esquerda
+    {
+        if (vet[k] == '1')
+        {
+            soma += pow(2, i - 1 - k);
+        }
+    }
+    return (soma);
+}
+int main()
+{
+    int i, qTestes;
+    
+    scanf("%d ", &qTestes);
+
+    for (i = 0; i < qTestes; i++)
+    {
+        printf("%d\n", binarios());
+    }
+}
