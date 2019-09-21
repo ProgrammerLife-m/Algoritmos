@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int mdcRecursivo(int, int);
+
+int main()
+{
+	int numA, numB;
+	
+	while(scanf("%d%d", &numA, &numB) != EOF)
+	{
+		printf("%d\n", mdcRecursivo(numA, numB));
+	}
+	return 0;	
+}
+int mdcRecursivo(int numA, int numB)
+{
+	int resp;
+	
+	if(numA == numB)
+	{
+		resp = numA;
+	}
+	else if(numA > numB)
+	{
+		numA = numA - numB;
+		resp = mdcRecursivo(numA, numB);
+	}
+	else
+	{
+		numB = numB - numA;
+		resp = mdcRecursivo(numA, numB);
+	}
+	return (resp);	
+		
+}
