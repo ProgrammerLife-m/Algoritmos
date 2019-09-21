@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+//int mdc(int , int);
+
+int mdc(int a, int b)
+{
+	int resp;
+
+	if(a == b)
+	{
+		resp = a;
+	}
+	else if(a > b)
+	{
+		a = a - b;
+		resp = mdc(a, b);
+	}
+	else
+	{
+		b = b - a;
+		resp = mdc(a, b);
+	}
+	return (resp);
+}
+int main()
+{
+	int a, b;
+
+	while(scanf("%d%d", &a, &b) != EOF)
+	{
+		printf("%d\n", mdc(a, b));
+	}
+
+	return 0;
+}
