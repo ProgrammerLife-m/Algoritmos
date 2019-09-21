@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+
+int collatzRecursivo(int num)
+{
+	int resp = 0;
+	
+	if(num != 1){
+		if(num % 2 == 0)
+		{
+			resp = 1 + collatzRecursivo(num/2);
+		}
+		else
+		{
+			resp = 1 + collatzRecursivo(3*num + 1);
+		}
+	}
+	return resp;
+}
+
+int main()
+{
+	int num;
+
+	scanf("%d", &num);
+
+	printf("%d\n", collatzRecursivo(num));
+
+	return 0;
+}
