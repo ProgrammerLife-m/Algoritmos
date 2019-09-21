@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main()
+{
+    int usuario, computador;
+
+    scanf("%d%d", &usuario, &computador);
+
+    //0 pedra 1 papel 2 tesoura
+
+    if ((usuario == 0) && (computador == 2))
+    {
+        printf("usuario venceu\n");
+    }
+    else if ((usuario == 1) && (computador == 0))
+    {
+        printf("usuario venceu\n");
+    }
+    else if ((usuario == 2) && (computador == 1))
+    {
+        printf("usuario venceu\n");
+    }
+    else if (usuario == computador)
+    {
+        printf("empate\n");
+    }
+    else
+    {
+        printf("computador venceu\n");
+    }
+
+    return 0;
+}
