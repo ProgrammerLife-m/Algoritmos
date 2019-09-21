@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+void main(void)
+{
+	int volInicial, volAtual = 0, volume, cont;
+	scanf("%d%d", &volInicial, &cont);
+	while(cont > 0 && cont < 100)
+	{
+		scanf("%d", &volume);
+
+		volAtual += volume;
+		cont--;
+	}
+	volAtual += volInicial;
+	if(volAtual < 0 )
+	{
+		volAtual = 0;
+	}
+	else if(volAtual > 100)
+	{
+		volAtual = 100;
+	}
+	printf("%d", volAtual);
+}
+//11+20-15-13 = 3 + 50 => 53
