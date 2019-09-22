@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void binario(int);
+
+int main()
+{
+    int num;
+
+    scanf("%d", &num);
+
+    binario(num);
+
+    printf("\n");
+
+    return 0;
+}
+void binario(int num)
+{
+    int resto;
+
+    if (num > 1)
+    {
+        binario(num / 2);
+    }
+    resto = num % 2;
+    printf("%d", resto);
+}
