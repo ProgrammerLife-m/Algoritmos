@@ -1,0 +1,23 @@
+#include <stdio.h>
+#define RAD 57.29578
+
+int main(){
+	float radianos;
+	int graus, minutos, segundos;
+	
+	scanf("%f", &radianos);
+	
+	radianos = radianos * RAD;
+	
+	graus = radianos;
+	
+	radianos = (radianos - graus)*3600;
+	
+	minutos = radianos/60;
+	
+	segundos = (radianos - minutos*60);	
+	
+	printf("%d graus, %d minutos e %d segundos", graus, minutos, segundos);
+	
+	return 0;
+}
