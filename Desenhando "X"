@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+void desenharZ(void)
+{
+
+	char simbolo;
+
+	scanf(" %c", &simbolo);
+
+	int l, c;
+	const int N = 10;
+	
+	for(l = 1; l <= N; l++)
+	{
+		for(c = 1; c <= N; c++)
+		{
+			if(c == l || c == N - l + 1)
+			{
+				printf("%c%c", simbolo, simbolo);
+			}
+			else
+			{
+				printf(" ");	
+			}
+		}
+		printf("\n");
+	}
+}
+
+int main(void){
+
+	desenharZ(); // Chamada da função que desenha o Z, apague ao submeter seu programa
+
+	return 0;
+
+}
