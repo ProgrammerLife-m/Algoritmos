@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main(){
+	int tempo, hora, minutos, segundos;	
+	
+	scanf("%d", &tempo);
+	
+	
+	hora = tempo/3600;
+	if(hora > 9){
+		printf("%d", hora);
+	}
+	else{
+		printf("0%d", hora);
+	}
+	
+	tempo = tempo%3600;	
+	minutos = tempo/60;
+	if(minutos > 9){
+		printf(":%d", minutos);
+	}
+	else{
+		printf(":0%d", minutos);
+	}
+	tempo = tempo%60;
+	segundos = tempo;
+	if(segundos > 9){
+		printf(":%d", segundos);
+	}
+	else{
+		printf(":0%d", segundos);
+	}
+	//printf("0%d:0%d:%d\n", hora, minutos, segundos);
+	
+	return 0;
+}
