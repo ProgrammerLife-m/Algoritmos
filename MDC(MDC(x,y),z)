@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int mdc(int, int);
+
+int verificaMdc(int numA, int numB)
+{
+	int resto, resposta;
+
+	if (numA > numB)
+	{
+		resposta = mdc(numA, numB);
+	}
+	else if (numB > numA)
+	{
+		resposta = mdc(numB, numA);
+	}
+	return (resposta);
+}
+
+int mdc(int numA, int numB)
+{
+	int resto, resposta;
+
+	resto = numA % numB;
+
+	while (resto != 0)
+	{
+		numA = numB;
+		numB = resto;
+		resto = numA % numB;
+	}
+	resposta = numB;
+	
+	return resposta;
+}
+
+int main()
+{
+	int numA, numB, numC, mdcAB;
+
+	scanf("%d%d%d", &numA, &numB, &numC);
+
+	mdcAB = verificaMdc(numA, numB);
+
+	printf("MDC: %d\n", verificaMdc(mdcAB, numC));
+}
