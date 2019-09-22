@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int mdc(int m, int n){
+	int resto;
+	
+	resto = m % n;
+	while(resto > 0){
+		m = n;
+		n = resto;
+		resto = m % n; 
+	}
+	return n;
+}
+
+int main(void){
+	int numA, numB;
+	
+	scanf("%d%d", &numA, &numB);
+	
+	printf("%d \n", mdc(numA, numB));
+}
