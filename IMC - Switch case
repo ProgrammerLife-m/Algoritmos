@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int main(void)
+{
+    char sexo;
+    float peso, alt, imc;
+
+    scanf(" %c%f%f", &sexo, &peso, &alt);
+
+    imc = peso / (alt * alt);
+
+    switch (sexo)
+    {
+    case 'm':
+        if (imc < 20)
+        {
+            printf("Abaixo do normal\n");
+        }
+        else if (imc >= 20 && imc < 25)
+        {
+            printf("Normal\n");
+        }
+        else if (imc >= 25 && imc < 30)
+        {
+            printf("Obesidade leve\n");
+        }
+        else if (imc >= 30 && imc < 42.9)
+        {
+            printf("Obesidade moderada\n");
+        }
+        break;
+
+    case 'f':
+        if (imc < 19)
+        {
+            printf("Abaixo do normal\n");
+        }
+        else if (imc >= 19 && imc < 24)
+        {
+            printf("Normal\n");
+        }
+        else if (imc >= 24 && imc < 29)
+        {
+            printf("Obesidade leve\n");
+        }
+        else if (imc >= 29 && imc < 38.9)
+        {
+            printf("Obesidade moderada\n");
+        }
+        break;
+
+    default:
+        printf("Entrada invalida\n");
+        break;
+    }
+
+    return 0;
+}
