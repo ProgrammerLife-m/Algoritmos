@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+long int fatorialIterativo(long int numA)
+{
+    long int resp, i;
+
+    if (numA == 0)
+    {
+        resp = 1;
+    }
+    else if (numA == 1)
+    {
+        resp = 1;
+    }
+    else if (numA > 1)
+    {
+        resp = numA;
+        for (i = numA - 1; i >= 1; i--)
+        {
+            resp = resp * i;
+        }
+    }
+    return resp;
+}
+long int binomialIterativo(long int numA, long int numB)
+{
+    long int resp;
+
+    resp = (fatorialIterativo(numA) / (fatorialIterativo(numB) * fatorialIterativo(numA - numB)));
+
+    return resp;
+}
+long int binomialRecursivo(long int numA, long int numB)
+{
+    long int resp;
+
+    if(numA < numB)
+    {
+        resp = 0;
+    }    
+    else if (numA == numB)
+    {
+        resp = 1;
+    }
+    else if (numA == 0 || numB == 0)
+    {
+        resp = 1;
+    }
+    else if (numA > 0 && numB > 0)
+    {
+        resp = binomialRecursivo(numA - 1, numB - 1) + binomialRecursivo(numA - 1, numB);
+    }
+
+    return resp;
+}
+int main()
+{
+    long int numA, numB;
+
+    scanf("%li%li", &numA, &numB);
+
+    printf("%li\n", binomialRecursivo(numA, numB));
+
+    return 0;
+}
