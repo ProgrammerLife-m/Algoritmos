@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <math.h>
+
+void main(void)
+{
+	int numA, resultado = 0, cont = 0;
+
+	for(cont = 0; cont < 6; cont++)
+	{
+		scanf("%d", &numA);
+		if(numA == 1)
+		{
+			resultado += pow(2, cont);
+		}
+	}
+	printf("%d\n", resultado);
+}
