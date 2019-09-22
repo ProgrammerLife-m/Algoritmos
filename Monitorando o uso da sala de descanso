@@ -1,0 +1,37 @@
+#include "stdio.h"
+
+int main()
+{
+	int maior_tempo = 0, registro, horas, minutos, segundos, inicio, fim, cont = 0;
+	// defina a hipotese
+	// valide a sua hipotese
+	// ajuste se for necessario
+	scanf("%d", &registro);
+	while(registro != 2)
+	{
+		scanf("%d%*c%d%*c%d", &horas, &minutos, &segundos);
+		
+		if(registro == 1)
+		{
+			inicio = horas*3600 + minutos*60 + segundos;
+		}
+		else
+		{
+			fim = horas*3600 + minutos*60 + segundos;
+		}
+		if(cont == 0)
+		{
+			maior_tempo = fim - inicio;
+		}
+		else if(fim - inicio > maior_tempo)
+		{
+			maior_tempo = fim - inicio;
+		}
+		cont++;
+		scanf("%d", ®istro);
+	}
+	printf("%d", maior_tempo);
+
+	return 0;
+}
+
