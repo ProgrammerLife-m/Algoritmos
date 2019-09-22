@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main(void)
+{
+
+	int numA, numB, numC, meio, menor, maior;
+
+	scanf("%d%d%d", &numA, &numB, &numC);
+
+	meio = numA + numB + numC;
+
+	maior = numA;
+	menor = numA;
+
+	if (menor > numB)
+	{
+		menor = numB;
+	}
+	else if (maior < numB)
+	{
+		maior = numB;
+	}
+	if (menor > numC)
+	{
+		menor = numC;
+	}
+	else if (maior < numC)
+	{
+		maior = numC;
+	}
+
+	meio += -menor - maior;
+
+	printf("%d\n", meio);
+	//printf("%d %d %d", menor, meio, maior);
+
+	return 0;
+}
