@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+void main(void)
+{
+	int qTestes;
+	scanf("%d", &qTestes);
+
+	while (qTestes > 0)
+	{
+		char vet[101];
+		int cont = 0, i, contA = 0, contB = 0;
+
+		scanf("%100s", vet);
+
+		for (i = 0; vet[i] != 0; i++)
+		{
+			if (vet[i] == '(')
+			{
+				cont++;
+				contA++;
+			}
+			else if(vet[i] == ')')
+			{
+				contB++;
+				if(cont > 0)
+				{
+					cont--;
+				}
+			}
+		}
+		if(cont == 0 && (contA + contB) % 2 == 0 && contA == contB)
+		{
+			printf("correct\n");
+		}
+		else
+		{
+			printf("incorrect\n");
+		}
+
+		qTestes--;
+	}
+}
