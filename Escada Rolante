@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int qPessoas, instante, cont = 0, i = 1, aux, aux2;
+	
+	scanf("%d", &qPessoas);
+	
+	while(i <= qPessoas)
+	{
+		scanf("%d", &instante);
+		
+		if(i == 1)
+		{
+			aux = instante;
+		}
+		else if(i >= 2)
+		{
+			aux2 = instante;
+			if(aux2 - aux > 10)
+			{
+				cont = cont + 10;
+			}
+			else
+			{
+				cont = cont + (aux2 - aux);
+			}	
+			aux = aux2;
+		}
+		if(i == qPessoas)
+		{
+			cont += 10;
+		}
+					
+		i++;
+	}
+	printf("%d", cont);
+	
+}
