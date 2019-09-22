@@ -1,0 +1,96 @@
+#include <stdio.h>
+#define LIBRA 0.4536  //kg
+#define ONCA 28.3495  //g
+#define GALAO 3.7854  //l
+#define ONCAL 29.5735 //ml
+#define MILHA 1.6093  //km
+#define JARDA 0.9144  //m
+
+int main(void)
+{
+    int categoria, conversao, quantidade;
+    float valor;
+
+    scanf("%d%d%d", &categoria, &conversao, &quantidade);
+
+    switch (categoria)
+    {
+    case 1:
+        switch (conversao)
+        {
+        case 1:
+            valor = quantidade * LIBRA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 2:
+            valor = quantidade / LIBRA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 3:
+            valor = quantidade * ONCA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 4:
+            valor = quantidade / ONCA;
+            printf("%.2f\n", valor);
+            break;
+        }
+        break;
+
+    case 2:
+        switch (conversao)
+        {
+        case 1:
+            valor = quantidade * GALAO;
+            printf("%.2f\n", valor);
+            break;
+
+        case 2:
+            valor = quantidade / GALAO;
+            printf("%.2f\n", valor);
+            break;
+
+        case 3:
+            valor = quantidade * ONCAL;
+            printf("%.2f\n", valor);
+            break;
+
+        case 4:
+            valor = quantidade / ONCAL;
+            printf("%.2f\n", valor);
+            break;
+        }
+        break;
+
+    case 3:
+        switch (conversao)
+        {
+        case 1:
+            valor = quantidade * MILHA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 2:
+            valor = quantidade / MILHA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 3:
+            valor = quantidade * JARDA;
+            printf("%.2f\n", valor);
+            break;
+
+        case 4:
+            valor = quantidade / JARDA;
+            printf("%.2f\n", valor);
+            break;
+        }
+        break;
+
+    }
+
+    return 0;
+}
