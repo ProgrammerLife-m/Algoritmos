@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    
+	int paridade, num, x, y;
+	 unsigned int semente;
+	
+	 scanf("%d%d%u", &paridade, &num, &semente);
+	 
+	 srand(semente);
+	
+	 y = (rand () % 10);
+	
+	 x = y + num;
+    
+	 if((paridade == 0) && (x % 2 == 0)){
+		 printf("Computador: %d. Voce (usuario) ganhou!", y);
+	 }
+	 else{
+		 if((paridade == 1) && (x % 2 == 1)){
+		 	 printf("Computador: %d. Voce (usuario) ganhou!", y);
+	 	 }
+	    else{
+		 	 printf("Computador: %d. Eu (computador) ganhei!", y); 
+		 } 
+	 }
+    return 0;
+}
