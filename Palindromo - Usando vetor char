@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+void main(void)
+{
+	int i, j, cont, contA, qTestes;
+	char vet[41];
+
+	scanf("%d", &qTestes);
+
+	while(qTestes >= 1)
+	{
+		cont = 0;
+		contA = 0;
+		scanf("%40s", vet);
+
+		for(i = 0; vet[i] != 0; i++)
+		{
+			cont++;
+		}
+		j = cont - 1;
+		for(i = 0; i < cont; i++)
+		{
+			if(vet[i] == vet[j])
+			{
+				contA++;
+			}
+			j--;
+		}
+		if(contA == cont)
+		{
+			for(i = 0; i < cont; i++)
+			{
+				printf("%c", vet[i]);
+			}
+			printf(": palindromo\n");
+		}
+		else
+		{
+			for(i = 0; i < cont; i++)
+			{
+				printf("%c", vet[i]);
+			}
+			printf(": normal\n");
+		}
+		qTestes--;
+	}
+}
