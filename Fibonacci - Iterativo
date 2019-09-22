@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int fibonacci (int i){
+	int fibo = 0, cont, aux = 0, aux2 = 0;
+	
+	if(i == 1 || i == 2)
+	{
+		fibo = 1;
+	}
+	else if(i > 2)
+	{
+		aux = 1;
+		aux2 = 1;
+		for(cont = 3; cont <= i; cont ++)
+		{
+			fibo = aux + aux2;
+			aux2 = aux;
+			aux = fibo;
+		}
+	}
+	return fibo;
+}
+
+void main(void) {
+    int n;
+    //printf("quantidade de termos da serie: ");
+    scanf("%d",&n);
+    printf("%d",fibonacci(n));
+}
