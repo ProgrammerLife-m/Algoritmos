@@ -1,0 +1,28 @@
+#include "stdio.h"
+
+int main(){
+	int numA, resto, i;
+	int vetor[32];
+	for(i = 0; i < 32; i++){
+		vetor[i] = 0;
+	}
+	scanf("%d", &numA);
+	i = 0;
+	if(numA == 1){
+		vetor[0] = 1;
+	}
+	else{
+		while(numA >= 1){
+			resto = numA % 2;
+			vetor[i] = resto;
+			numA = numA / 2;
+			i++;
+		}
+	}
+	for(i = 31; i > -1; i--){
+		printf("%d", vetor[i]);
+	}
+	
+	
+	return 0;
+}
