@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <math.h>
+
+int ler_decimal(void);
+int ler_hexadecimal(void);
+
+void main(void)
+{
+	int decimais, hexadecimais, i;
+
+	scanf("%d%d\n", &decimais, &hexadecimais);
+
+	for(i = 0; i < decimais; i++)
+	{
+		ler_decimal();
+	}
+	for(i = 0; i < hexadecimais; i++)
+	{
+		ler_hexadecimal();
+	}
+}
+
+int ler_decimal(void)
+{
+	int valor, aux = 0;
+	valor = getchar();
+	while(!isspace(valor))
+	{
+		aux *= 10;
+		if(valor >= '0' && valor <= '9')
+		{
+			aux += (valor - 48);
+		}
+		valor = getchar();
+	}
+	printf("%d\n", aux);
+}
+
+int ler_hexadecimal(void)
+{
+	int valor, aux = 0;
+	valor = getchar();
+
+	while(!isspace(valor))
+	{		
+		aux *= 16;
+		if(valor >= '0' && valor <= '9')
+		{
+			aux += (valor - 48);
+		}
+		else if(valor >= 'A' && valor <= 'F')
+		{
+			aux += (valor - 55);
+		}
+		valor = getchar();
+	}
+	printf("%d\n", aux);
+}
