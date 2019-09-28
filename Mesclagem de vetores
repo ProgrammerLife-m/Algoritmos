@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+
+void resultado(int n, int m, int *v, int *u);
+
+void main(void)
+{
+	int teste, i, n, m;
+
+	scanf("%d", &teste);
+	while(teste > 0)
+	{
+		scanf("%d", &n);
+		int v[n];
+		for(i = 0; i < n; i++)
+		{
+			scanf("%d", &v[i]);
+		}
+		scanf("%d", &m);
+		int u[m];
+		for(i = 0; i < m; i++)
+		{
+			scanf("%d", &u[i]);
+		}
+		resultado(n, m, v, u);
+		teste--;
+	}
+}
+void resultado(int n, int m, int *v, int *u)
+{
+	int p = n + m, w[p];
+	int i, contV = 0, contU = 0, aux = 1;
+
+	for(i = 0; i < p; i++)
+	{
+		if(u[contU] >= v[contV] && aux == 1)
+		{
+			w[i] = v[contV];
+			contV++;
+		}
+		else if(aux == 1)
+		{
+			w[i] = u[contU];
+			contU++;
+		}
+		if(contV == n+1 && contU < m)
+		{
+			w[i] = u[contU];
+			contU++;
+			aux = 0;
+		}
+		else if(contU == m+1 && contV < n)
+		{
+			w[i] = v[contV];
+			contV++;
+			aux = 0;
+		}
+	}
+	for(i = 0; i < p; i++)
+	{
+		printf("%d ", w[i]);
+	}
+}
