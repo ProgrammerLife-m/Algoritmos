@@ -1,0 +1,53 @@
+#include <stdio.h>
+//0.11 0.2 0.03 0.56 0.323 0.345 0.234 0.56 0.6546 0.123 0.123 0.999
+void histograma(int n, float *medicoes, int *hist);
+
+void main(void)
+{
+	int h[10], n, i;
+
+	scanf("%d", &n);
+
+	float v[n];
+
+	for(i = 0; i < n; i++)
+	{
+		scanf("%f", &v[i]);
+	}
+
+	histograma(n, v, h);
+}
+
+void histograma(int n, float *medicoes, int *hist)
+{
+	int i, j, cont;
+	float p = 0.0;
+
+	for(i = 0; i < 10; i++)
+	{
+		cont = 0;
+		for(j = 0; j < n; j++)
+		{
+			if(p != 9){
+				if((medicoes[j] >= (p/10) && (medicoes[j] < ((p+1)/10))))
+				{
+					cont++;
+				}
+			}
+			else
+			{
+				if((medicoes[j] >= (p/10) && (medicoes[j] <= ((p+1)/10))))
+				{
+					cont++;
+				}
+			}
+		}
+		hist[i] = cont;
+		p++;
+	}
+	for(i = 0; i < 10; i++)
+	{
+		printf("%d ", hist[i]);
+	}
+
+}
