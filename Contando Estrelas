@@ -1,0 +1,58 @@
+#include <stdio.h>
+#define MAX 100
+
+void contaEstrelas(int linhas, int colunas, char ceu[][colunas])
+{
+	int i, j, cont = 0, novaL = linhas + 2, novaC = colunas + 2;
+
+	char ceuMaior[novaL][novaC];
+
+	for (i = 0; i < novaL; i++)
+	{
+		for (j = 0; j < novaC; j++)
+		{
+			if (i == 0 || i == (novaL - 1) || j == 0 || j == (novaC - 1))
+			{
+				ceuMaior[i][j] = '.';
+			}
+			else
+			{
+				ceuMaior[i][j] = ceu[i - 1][j - 1];
+			}
+		}
+	}
+	for (i = 0; i < novaL; i++)
+	{
+		for (j = 0; j < novaC; j++)
+		{
+			if (ceuMaior[i][j] == '*')
+			{
+				if (ceuMaior[i][j - 1] == '.' && ceuMaior[i][j - 1] == ceuMaior[i][j + 1] && ceuMaior[i - 1][j - 1] == ceuMaior[i - 1][j + 1] && ceuMaior[i + 1][j - 1] == ceuMaior[i + 1][j + 1] && ceuMaior[i - 1][j] == ceuMaior[i + 1][j])
+				{
+					cont++;
+				}
+			}
+		}
+	}
+	printf("%d\n", cont);
+}
+void main(void)
+{
+	int linhas, colunas, i;
+
+	scanf("%d%d", &linhas, &colunas);
+
+	while (linhas > 0 && colunas > 0)
+	{
+		char ceu[linhas][colunas];
+
+		for (i = 0; i < linhas; i++)
+		{
+			scanf("%s", ceu[i]);
+		}
+
+		contaEstrelas(linhas, colunas, ceu);
+
+		scanf("%d%d", &linhas, &colunas);
+	}
+}
