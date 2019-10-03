@@ -1,45 +1,59 @@
 #include <stdio.h>
 
-void resultante(int n, int *v, int *r);
+int remover_zeros(int tam, int vetor[], int res);
+void vetorResultante(int n, int vetor[], int resultante[]);
 
 void main(void)
 {
-    int n, i, cont, aux = 1;
+    int n, i, aux = 1;
 
     scanf("%d", &n);
 
     while (n != 0)
     {
-        int vetA[n];
-        cont = 0;
+        int vetA[n], cont = 0;
+
         for (i = 0; i < n; i++)
         {
             scanf("%d", &vetA[i]);
-            if (vetA[i] != 0)
-            {
-                cont++;
-            }
         }
         printf("Caso %d: ", aux++);
+
+        cont = remover_zeros(n, vetA, cont);
         int vetB[cont];
-        
-        resultante(n, vetA, vetB);
-        for (i = 0; i < cont; i++)
+        vetorResultante(n, vetA, vetB);
+
+        for(i = 0; i < cont; i++)
         {
             printf("%d ", vetB[i]);
         }
+        
         printf("\n");
         scanf("%d", &n);
     }
 }
-void resultante(int n, int *v, int *r)
+int remover_zeros(int tam, int vetor[], int res)
+{
+    int i;
+
+    for (i = 0; i < tam; i++)
+    {
+        if (vetor[i] != 0)
+        {
+            res++;
+        }
+    }
+    return res;
+}
+void vetorResultante(int n, int vetor[], int resultante[])
 {
     int i, j = 0;
-    for (i = 0; i < n; i++)
+
+    for(i = 0; i < n; i++)
     {
-        if (v[i] != 0)
+        if(vetor[i] != 0)
         {
-            r[j] = v[i];
+            resultante[j] = vetor[i];
             j++;
         }
     }
