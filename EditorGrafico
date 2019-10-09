@@ -1,0 +1,255 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#define MAX 80
+#define MAX2 100
+
+void imprimir_grid(int numL, int numC, char **grid);
+void limpa_grid(int numL, int numC, char **grid);
+void colore_grid(int colunaX, int linhaY, char cor, char **grid);
+void des_vertical(int numL, int numC, int colunaX, int linhaY1, int linhaY2, char cor, char **grid);
+void des_horizontal(int numL, int numC, int colunaX1, int colunaX2, int linhaY, char cor, char **grid);
+void des_retangulo(int numL, int numC, int colunaX1, int linhaY1, int colunaX2, int linhaY2, char cor, char **grid);
+void substitui_pixel(int colunaX, int linhaY, char cor, char **grid);
+void verificar_posicoes_rec(int colunaX, int linhaY, char cor, char **grid);
+char **cria_grid(int numL, int numC);
+void liberar_grid(int numL, char **grid);
+void colocar_sentinela(int numL, int numC, char **grid);
+
+void main(void)
+{
+    char **grid, comando, cor, arquivo[MAX2];
+    int aux = 0, numL, numC, i, j, x, x1, x2, y, y1, y2;
+    grid = cria_grid(MAX, MAX + 1);
+
+    scanf(" %c", &comando);
+    comando = toupper(comando);
+
+    while (comando != 'X')
+    {
+        switch (comando)
+        {
+        case 73: //I
+            if (aux == 0)
+            {
+                scanf("%d%d", &numC, &numL);
+                if (numL > 0 && numC > 0)
+                {
+                    colocar_sentinela(numL, numC, grid);
+                    aux = 1;
+                }
+            }
+            break;
+        case 67: //C
+            if (aux != 0)
+            {
+                limpa_grid(numL, numC, grid);
+            }
+            break;
+        case 76: //L
+            if (aux != 0)
+            {
+                scanf("%d%d %c", &x, &y, &cor);
+                if (x > 0 && y > 0)
+                {
+                    colore_grid(x, y, cor, grid);
+                }
+            }
+            break;
+        case 86: //'V':
+            if (aux != 0)
+            {
+                scanf("%d%d%d %c", &x, &y1, &y2, &cor);
+                if (x1 > 0 && y1 > 0 && y2 > 0)
+                {
+                    des_vertical(numL, numC, x, y1, y2, cor, grid);
+                }
+            }
+            break;
+        case 72: //'H':
+            if (aux != 0)
+            {
+                scanf("%d%d%d %c", &x1, &x2, &y, &cor);
+                if (x1 > 0 && x2 > 0 && y > 0)
+                {
+                    des_horizontal(numL, numC, x1, x2, y, cor, grid);
+                }
+            }
+            break;
+        case 75: //'K':
+            if (aux != 0)
+            {
+                scanf("%d%d%d%d %c", &x1, &y1, &x2, &y2, &cor);
+                if (x1 > 0 && y1 > 0 && x2 > 0 && y2 > 0)
+                {
+                    des_retangulo(numL, numC, x1, y1, x2, y2, cor, grid);
+                }
+            }
+            break;
+        case 70: //'F':
+            if (aux != 0)
+            {
+                scanf("%d%d %c", &x, &y, &cor);
+                if (x > 0 && y > 0)
+                {
+                    substitui_pixel(x, y, cor, grid);
+                }
+            }
+            break;
+        case 83: //'S':
+            if (aux != 0)
+            {
+                scanf("%100s", arquivo);
+                printf("%s\n", arquivo);
+                imprimir_grid(numL, numC, grid);
+            }
+            break;
+        }
+        scanf(" %c", &comando);
+        comando = toupper(comando);
+    }
+    liberar_grid(MAX, grid);
+}
+char **cria_grid(int numL, int numC)
+{
+    int i;
+
+    char **novaGrid;
+    novaGrid = malloc(numL * sizeof(char *));
+    for (i = 0; i < numL; i++)
+    {
+        novaGrid[i] = malloc(numC * sizeof(char));
+    }
+
+    return novaGrid;
+}
+void colocar_sentinela(int numL, int numC, char **grid)
+{
+    int i, j;
+
+    for (i = 1; i <= numL; i++)
+    {
+        for (j = 1; j <= numC; j++)
+        {
+            grid[i][j] = 'O';
+        }
+    }
+
+    for (j = 0; j <= numC + 1; j++)
+    {
+        grid[0][j] = grid[numL + 1][j] = 0;
+    }
+    for (i = 0; i <= numL + 1; i++)
+    {
+        grid[i][0] = grid[i][numC + 1] = 0;
+    }
+}
+void imprimir_grid(int numL, int numC, char **grid)
+{
+    int i, j;
+
+    for (i = 1; i <= numL; i++)
+    {
+        for (j = 1; j <= numC; j++)
+        {
+            printf("%c", grid[i][j]);
+        }
+        printf("\n");
+    }
+}
+void limpa_grid(int numL, int numC, char **grid)
+{
+    int i, j;
+
+    for (i = 1; i <= numL; i++)
+    {
+        for (j = 1; j <= numC; j++)
+        {
+            grid[i][j] = 'O';
+        }
+    }
+}
+void colore_grid(int colunaX, int linhaY, char cor, char **grid)
+{
+    if (grid[linhaY][colunaX] != 0)
+    {
+        grid[linhaY][colunaX] = cor;
+    }
+}
+void des_vertical(int numL, int numC, int colunaX, int linhaY1, int linhaY2, char cor, char **grid)
+{
+    int i, menor = linhaY1, maior = linhaY2;
+
+    if (menor > linhaY2)
+    {
+        menor = linhaY2;
+        maior = linhaY1;
+    }
+    for (i = menor; i <= maior; i++)
+    {
+        grid[i][colunaX] = cor;
+    }
+}
+void des_horizontal(int numL, int numC, int colunaX1, int colunaX2, int linhaY, char cor, char **grid)
+{
+    int i, menor = colunaX1, maior = colunaX2;
+
+    if (menor > colunaX2)
+    {
+        menor = colunaX2;
+        maior = colunaX1;
+    }
+    for (i = menor; i <= maior; i++)
+    {
+        grid[linhaY][i] = cor;
+    }
+}
+void des_retangulo(int numL, int numC, int colunaX1, int linhaY1, int colunaX2, int linhaY2, char cor, char **grid)
+{
+    des_horizontal(numL, numC, colunaX1, colunaX2, linhaY1, cor, grid);
+    des_horizontal(numL, numC, colunaX1, colunaX2, linhaY2, cor, grid);
+    des_vertical(numL, numC, colunaX1, linhaY1, linhaY2, cor, grid);
+    des_vertical(numL, numC, colunaX2, linhaY1, linhaY2, cor, grid);
+}
+void substitui_pixel(int colunaX, int linhaY, char cor, char **grid)
+{
+    if (grid[linhaY][colunaX] != 0)
+    {
+        verificar_posicoes_rec(colunaX, linhaY, cor, grid);
+    }
+}
+void verificar_posicoes_rec(int colunaX, int linhaY, char cor, char **grid)
+{
+    if (grid[linhaY][colunaX] != cor)
+    {
+        char corAux = grid[linhaY][colunaX];
+        colore_grid(colunaX, linhaY, cor, grid);
+
+        if (grid[linhaY - 1][colunaX] == corAux)
+        {
+            verificar_posicoes_rec(colunaX, linhaY - 1, cor, grid);
+        }
+        if (grid[linhaY + 1][colunaX] == corAux)
+        {
+            verificar_posicoes_rec(colunaX, linhaY + 1, cor, grid);
+        }
+        if (grid[linhaY][colunaX - 1] == corAux)
+        {
+            verificar_posicoes_rec(colunaX - 1, linhaY, cor, grid);
+        }
+        if (grid[linhaY][colunaX + 1] == corAux)
+        {
+            verificar_posicoes_rec(colunaX + 1, linhaY, cor, grid);
+        }
+    }
+}
+void liberar_grid(int numL, char **grid)
+{
+    int i;
+
+    for (i = 0; i < numL; i++)
+    {
+        free(grid[i]);
+    }
+    free(grid);
+}
