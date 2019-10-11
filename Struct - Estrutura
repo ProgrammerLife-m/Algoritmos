@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <math.h>
+
+typedef struct retangulo
+{
+	float b;//base
+	float h;//altura
+} Ret;
+
+typedef struct circulo
+{
+	float r;//raio
+} Circ;
+
+
+Circ* circ_interno(Ret* r)
+{
+	Circ c;
+	Circ* c1 = &c;
+
+	if((r -> b) > (r -> h))
+	{
+		(c1 -> r) = (r -> h)/2;
+	}
+	else
+	{
+		(c1 -> r) = (r -> b)/2;
+	}
+	
+	return c1;
+}
+
+Ret* ret_circunscrito(Circ* c, float h)
+{
+	Ret retA;
+	Ret* retB = &retA;
+	
+	(retB -> b) = sqrt(4*(c->r)*(c->r) - h*h);
+	
+	return retB;
+}
+
+void main(void)
+{
+	Circ* c;
+	Ret* ret;
+	
+	Circ cA;
+	Ret retA;
+	
+	scanf("%f%f%f", &cA.r, &retA.b, &retA.h);
+	
+	c = circ_interno(&retA);
+	printf("%.2f\n", c->r);
+	
+	ret = ret_circunscrito(&cA, retA.h);
+	printf("%.2f %.2f", ret -> b, retA.h);
+}
+
+
+
+
+
