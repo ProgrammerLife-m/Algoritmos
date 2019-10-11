@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+typedef struct ponto
+{
+	float x;
+	float y;
+} Ponto;
+int dentroRet(Ponto* v1, Ponto* v2, Ponto* P)
+{
+	if((v1 -> x <= P -> x) && (v2 -> x >= P -> x) && (v1 -> y <= P -> y) && (v1 -> y <= P -> y))
+	{
+		return 1;
+	}
+	return 0;
+}
+void main(void)
+{
+	Ponto a, b ,c;
+	
+	scanf("%f%f", &a.x, &a.y);
+	scanf("%f%f", &b.x, &b.y);
+	scanf("%f%f", &c.x, &c.y);
+	
+	printf("%d", dentroRet(&a, &b, &c));
+}
