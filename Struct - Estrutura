@@ -15,8 +15,7 @@ typedef struct circulo
 
 Circ* circ_interno(Ret* r)
 {
-	Circ c;
-	Circ* c1 = &c;
+	Circ* c1 = malloc(sizeof(Circ));
 
 	if((r -> b) > (r -> h))
 	{
@@ -32,8 +31,7 @@ Circ* circ_interno(Ret* r)
 
 Ret* ret_circunscrito(Circ* c, float h)
 {
-	Ret retA;
-	Ret* retB = &retA;
+	Ret* retB = malloc(sizeof(Ret));
 	
 	(retB -> b) = sqrt(4*(c->r)*(c->r) - h*h);
 	
@@ -55,6 +53,9 @@ void main(void)
 	
 	ret = ret_circunscrito(&cA, retA.h);
 	printf("%.2f %.2f", ret -> b, retA.h);
+	
+	free(c);
+	free(ret);
 }
 
 
