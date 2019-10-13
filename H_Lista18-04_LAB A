@@ -1,0 +1,89 @@
+#include <stdio.h>
+
+struct Musica {
+	char autor[100];
+	char titulo[100];
+	char arquivo[100];
+	int duracao;
+};
+
+int tamanho_string(char str[]){
+	int tam = 0;
+	while(str[tam] != '\0'){
+		tam++;
+	}
+	return tam;
+}
+
+int strequal(char* str_busca, char* str_base){
+	int tam_str_busca = tamanho_string(str_busca);
+	int tam_str_base = tamanho_string(str_base);
+	if(tam_str_busca != tam_str_base){
+		return 1;
+	}
+	int i = 0;
+	while(i < tam_str_busca){
+		if(str_busca[i] != str_base[i]){
+			return 1;
+		}
+		i++;
+	}
+	return 0;
+}
+
+int buscar_musica(struct Musica *base, int tam_base, char *autor, char *titulo){
+	int i;
+	for( i = 0; i < tam_base; i++){
+		int resp1 = strequal(autor, base[i].autor);
+		int resp2 = strequal(titulo, base[i].titulo);
+		if(resp1 == resp2 && resp1 == 0){
+			return i;
+		}
+	}
+	return -1;
+}
+
+void insere_registros(struct Musica *base, int tam_base){
+	int i;
+	for(i = 0; i < tam_base; i++){
+		scanf(" %s %s %s %d", base[i].autor, base[i].titulo, base[i].arquivo, &base[i].duracao);
+	}
+}
+
+int main(void){
+	struct Musica base[100];
+	struct Musica lista[100];
+
+	int n_registros;
+	scanf("%d", &n_registros);
+	insere_registros(base, n_registros);
+
+	int i, n_buscas;
+	scanf("%d", &n_buscas);
+	int musicas_encont[n_buscas];
+	for(i = 0; i < n_buscas; i++){
+		char busca_autor[100];
+		char busca_titulo[100];
+		scanf(" %s %s", busca_autor, busca_titulo);
+		musicas_encont[i] = buscar_musica(base, n_registros, busca_autor, busca_titulo);
+	}
+	int soma_tempo = 0, cont = 0;
+	for(i = 0; i < n_buscas; i++){
+		int indice = musicas_encont[i];
+		if(musicas_encont[i] != -1 && (soma_tempo + base[indice].duracao) <= 3600){
+			soma_tempo += base[indice].duracao;
+			cont++;
+		}else{
+			musicas_encont[i] = -1;
+		}
+	}
+	
+	printf("Lista gerada com %d musicas e duracao %02d:%02d\n", cont, (soma_tempo/60), (soma_tempo%60));
+	for(i = 0; i < n_buscas; i++){
+		if(musicas_encont[i] != -1){
+			int indice = musicas_encont[i];
+			printf("%s\n", base[indice].arquivo);
+		}
+	}
+	return 0;
+}
