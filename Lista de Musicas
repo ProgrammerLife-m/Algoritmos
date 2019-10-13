@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Musica
+{
+	char autor[100];
+	char titulo[100];
+	char arquivo[100];
+	int duracao;
+};
+
+int buscar_musica(struct Musica *base, int tam_base, char *autor, char *titulo)
+{
+	int i;
+
+	for (i = 0; i < tam_base; i++)
+	{
+		if (strcmp(base[i].autor, autor) == 0 && strcmp(base[i].titulo, titulo) == 0)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+void preencheBase(int tam_base, struct Musica *base)
+{
+	int i;
+	for (i = 0; i < tam_base; i++)
+	{
+		scanf("%s", (base[i].autor));
+		scanf("%s", (base[i].titulo));
+		scanf("%s", (base[i].arquivo));
+		scanf("%d", &(base[i].duracao));
+	}
+}
+void preencheLista(int tam_busca, struct Musica *lista)
+{
+	int i;
+	for (i = 0; i < tam_busca; i++)
+	{
+		scanf("%s", (lista[i].autor));
+		scanf("%s", (lista[i].titulo));
+	}
+}
+
+int main(void)
+{
+	struct Musica base[100];
+	struct Musica lista[100];
+
+	int i, tam_base, tam_busca;
+
+	scanf("%d", &tam_base);
+	preencheBase(tam_base, base);
+
+	scanf("%d", &tam_busca);
+	preencheLista(tam_busca, lista);
+
+	int playlist[tam_busca];
+	int cont = 0, acum = 0, aux = 0;
+
+	for (i = 0; i < tam_busca; i++)
+	{
+		aux = buscar_musica(base, tam_base, lista[i].autor, lista[i].titulo);
+		playlist[i] = aux;
+
+		if (aux != -1 && (acum + base[aux].duracao) <= 3600)
+		{
+			acum += base[aux].duracao;
+			cont++;
+		}
+		else
+		{
+			playlist[i] = -1;
+		}
+	}
+	int indice = 0;
+	printf("Lista gerada com %d musicas e duracao %02d:%02d\n", cont, acum / 60, acum % 60);
+	for (i = 0; i < tam_busca; i++)
+	{
+		indice = playlist[i];
+		if (playlist[i] != -1)
+		{
+			printf("%s\n", base[indice].arquivo);
+		}
+	}
+	return 0;
+}
