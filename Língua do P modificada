@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <ctype.h>
+#define MAX 100
+
+
+void main(void)
+{
+	char vogais[11] = "aeiou";
+	char string[MAX+1];
+	int i, j, cont;
+
+	fgets(string, 100, stdin);
+	
+	for(i = 0; string[i] != 0; i++)
+	{
+		string[i] = tolower(string[i]);
+		cont = 0;
+		
+		for(j = 0; j < 11; j++)
+		{
+			if(string[i] != vogais[j])
+			{
+				cont++;
+			}
+		}
+		if(cont == 11 && !isspace(string[i]))
+		{
+			string[i] = 'p';
+		}
+	}
+	printf("%s", string);
+	
+}
