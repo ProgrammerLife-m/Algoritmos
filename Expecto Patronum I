@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <ctype.h>
+#define MAX 80
+
+char strlower(int i, char* animal)
+{
+	return tolower(animal[i]);
+}
+int strequal(char* string, char* animal)
+{
+	int i, aux = 0, cont = 0;
+	char conv_min;
+	
+	for(i = 0; i < 6; i++)
+	{
+		conv_min = strlower(i, animal);
+		
+		if(string[i] == conv_min && aux == 0)
+		{
+			cont++;
+		}
+		else
+		{
+			aux = 1;
+		}
+	}
+	if(cont == 6)
+	{
+		return 0;
+	}
+	return 1;
+}
+
+void main(void)
+{
+	char string[6] = "cervo";
+	char animal[MAX+1];
+	
+	scanf("%80s", animal);
+	
+	if(strequal(string, animal) == 0)
+	{
+		printf("%s eh patrono do Harry Potter", animal);
+	}
+	else
+	{
+		printf("%s nao eh patrono do Harry Potter", animal);
+	}
+}
