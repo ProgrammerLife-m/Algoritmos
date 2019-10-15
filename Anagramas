@@ -1,0 +1,71 @@
+#include <stdio.h>
+#define MAX 63
+#define MAX2 27
+
+int posalfa(int c)
+{
+	if(c >= 0 && c <= 25)
+	{
+		return (c+97);
+	}
+	return -1;
+}
+void enumerar_letras(char* str, int bins[])
+{
+	int i, j, k = 0, cont;
+	char aux;
+	
+	for(i = 0; i < MAX2; i++)
+	{
+		cont = 0;
+		aux = posalfa(i);
+		for(j = 0; str[j] != 0; j++)
+		{
+			if(aux == str[j])
+			{
+				cont++;
+			}
+		}
+		bins[i] = cont;
+	}
+}
+int vetores_iguais(int n, int a[], int b[])
+{
+	int i, aux = 0, cont = 0;
+	for(i = 0; i < n; i++)
+	{
+		if(a[i] == b[i] && aux == 0)
+		{
+			cont++;
+		}
+		else
+		{
+			aux = 1;
+		}
+	}
+	if(cont == n)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+void main(void)
+{
+	char testeA[MAX], testeB[MAX];
+	int contadorA[MAX2], contadorB[MAX2];
+	
+	while(scanf("%s%s", &testeA, &testeB) != EOF)
+	{
+		enumerar_letras(testeA, contadorA);
+		enumerar_letras(testeB, contadorB);
+		if(vetores_iguais(MAX2, contadorA, con tadorB) == 1)
+		{
+			printf("%s eh anagrama de %s\n", testeA, testeB);
+		}
+		else
+		{
+			printf("%s nao eh anagrama de %s\n", testeA, testeB);
+		}
+	}
+}
