@@ -1,0 +1,77 @@
+/////////////////////main.c//////////////////////////////////////////////////////////////
+#include<stdio.h>
+#include "complexo.h"
+
+int main(){
+  Complexo c1;
+  Complexo c2;
+
+  scanf("%f %f", &c1.real, &c1.imaginario);
+  scanf("%f %f", &c2.real, &c2.imaginario);
+
+  Complexo c3 = soma_complexo(c1.real, c2.real, c1.imaginario, c2.imaginario, c3);
+
+  Complexo c4 = subracao_complexo(c1.real, c2.real, c1.imaginario, c2.imaginario, c4);
+
+  Complexo c5 = multiplicacao_complexo(c1.real, c2.real, c1.imaginario, c2.imaginario, c5);
+
+  Complexo c6 = divisao_complexo(c1.real, c2.real, c1.imaginario, c2.imaginario, c6);
+
+  printf("Soma: parte real: %.2f parte imaginaria: %.2f\n", c3.real, c3.imaginario);
+
+  printf("Subtracao: parte real: %.2f parte imaginaria: %.2f\n", c4.real, c4.imaginario);
+
+  printf("Multiplicacao: parte real: %.2f parte imaginaria: %.2f\n", c5.real, c5.imaginario);
+
+  printf("Divisao: parte real: %.2f parte imaginaria: %.2f\n", c6.real, c6.imaginario);
+
+  return 0;
+}
+//////////////////////////complexo.c//////////////////////////////////////////////////////////
+#include "complexo.h"
+
+Complexo soma_complexo(float r1, float r2, float i1, float i2, Complexo x)
+{
+    float r = r1 + r2;
+    float i = i1 + i2;
+    x.real = r;
+    x.imaginario = i;
+    return x;
+}
+Complexo subracao_complexo(float r1, float r2, float i1, float i2, Complexo x)
+{
+    float r = r1 - r2;
+    float i = i1 - i2;
+
+    x.real = r;
+    x.imaginario = i;
+    return x;
+}
+
+Complexo multiplicacao_complexo(float r1, float r2, float i1, float i2, Complexo x)
+{
+    x.real = (r1 * r2 - i1 * i2);
+    x.imaginario = (r1 * i2 + r2 * i1);
+    return x;
+}
+Complexo divisao_complexo(float r1, float r2, float i1, float i2, Complexo x)
+{
+    x.real = ((r1 * r2) + (i1 * i2)) / ((r2 * r2) + (i2 * i2));
+    x.imaginario = ((i1 * r2) - (r1 * i2)) / ((r2 * r2) + (i2 * i2));
+    return x;
+}
+////////////////////////complexo.h/////////////////////////////////////////////////////////
+typedef struct complexo{
+  float real;
+  float imaginario;
+} Complexo;
+
+Complexo soma_complexo(float r1, float r2, float i1, float i2, Complexo x);
+
+Complexo subracao_complexo(float r1, float r2, float i1, float i2, Complexo x);
+
+Complexo multiplicacao_complexo(float r1, float r2, float i1, float i2, Complexo x);
+
+Complexo divisao_complexo(float r1, float r2, float i1, float i2, Complexo x);
+/////////////////////////fim///////////////////////////////////////////////////////////////////
+
