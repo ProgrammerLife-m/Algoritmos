@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+
+typedef struct conjunto
+{
+	char tipo_dano[7];
+	int valor_dano;
+	int qturno;
+} Conjunto;
+
+Conjunto *cria()
+{
+	Conjunto *teste = malloc(sizeof teste);
+	assert(teste != NULL);
+
+	scanf("%s %d %d", (teste -> tipo_dano), &(teste -> valor_dano), &(teste -> qturno));
+	return teste;
+}
+char* acessa_tipo_dano(Conjunto *teste)
+{
+	return teste -> tipo_dano;
+}
+int acessa_valor_dano(Conjunto *teste)
+{
+	return teste -> valor_dano;
+}
+int acessa_qturno(Conjunto *teste)
+{
+	return teste -> qturno;
+}
+void libera(Conjunto *teste)
+{
+	free(teste);
+}
+int main(void)
+{
+	Conjunto *teste;
+	teste = cria();
+
+	int total_dano = 0;
+	if(strcmp(acessa_tipo_dano(teste), "CAUDA") == 0)
+	{
+		total_dano = acessa_valor_dano(teste) * acessa_qturno(teste);
+	}
+	else if(strcmp(acessa_tipo_dano(teste),"CUSPE") == 0)
+	{
+		total_dano = 2*acessa_valor_dano(teste) * acessa_qturno(teste);
+	}
+	else if(strcmp(acessa_tipo_dano(teste), "PATADA") == 0)
+	{
+		total_dano = (2*acessa_valor_dano(teste) - 5) * acessa_qturno(teste);
+	}
+	printf("%d\n", total_dano);
+	libera(teste);
+
+	return 0;
+}
+
+//////////////////////SEM ALOCACAO/////////////////////////////////////////////////////////
+/*
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char tipo_dano[7];
+	int valor_dano, qturno;
+
+	scanf("%s %d %d", tipo_dano, &valor_dano, &qturno);
+	int total_dano = 0;
+
+	if(strcmp(tipo_dano, "CAUDA") == 0)
+	{
+		total_dano = valor_dano * qturno;
+	}
+	else if(strcmp(tipo_dano,"CUSPE") == 0)
+	{
+		total_dano = 2*valor_dano * qturno;
+	}
+	else if(strcmp(tipo_dano, "PATADA") == 0)
+	{
+		total_dano = (2*valor_dano - 5) * qturno;
+	}
+	printf("%d\n", total_dano);
+
+	return 0;
+}*/
