@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+typedef struct conjunto
+{
+    int esq;
+    char simbolo_op;
+    int dir;
+} Conjunto;
+
+Conjunto *cria(int a, char o, int b)
+{
+    Conjunto *teste = malloc(sizeof teste);
+    assert(teste != NULL);
+
+    teste -> esq = a;
+    teste -> simbolo_op = o;
+    teste -> dir = b;
+    
+    return teste;
+}
+int acessa_num_esq(Conjunto *teste)
+{
+    return teste -> esq;
+}
+int acessa_num_dir(Conjunto *teste)
+{
+    return teste -> dir;
+}
+char acessa_simb_op(Conjunto *teste)
+{
+    return teste -> simbolo_op;
+}
+int soma(int a, int b, Conjunto *teste)
+{
+    int sum = teste -> esq + teste -> dir;
+    return sum;
+}
+int subtracao(int a, int b, Conjunto *teste)
+{
+    int sub = teste -> esq - teste -> dir;
+    return sub;
+}
+int multiplicacao(int a, int b, Conjunto *teste)
+{
+    int mult = teste -> esq * teste -> dir;
+    return mult;
+}
+int divisao(int a, int b, Conjunto *teste)
+{
+    int div = teste -> esq / teste -> dir;
+    return div;
+}
+void libera(Conjunto *teste)
+{
+    free(teste);
+}
+int main(void)
+{
+    int esq, dir, aux = 0;
+    char simbolo_op;
+
+    while (scanf("%d %c %d", &esq, &simbolo_op, &dir) != EOF)
+    {
+        Conjunto *teste;
+        teste = cria(esq, simbolo_op, dir);
+
+        if(acessa_simb_op(teste) == '+')
+        {
+            if(soma(acessa_num_esq(teste), acessa_num_dir(teste), teste) == 42)
+            {
+                printf("%d %c %d = %d\n", acessa_num_esq(teste), acessa_simb_op(teste), acessa_num_dir(teste), soma(acessa_num_esq(teste), acessa_num_dir(teste), teste));
+				aux++;
+            }
+        }
+        else if(acessa_simb_op(teste) == '-')
+        {
+            if(subtracao(acessa_num_esq(teste), acessa_num_dir(teste), teste) == 42)
+            {
+                printf("%d %c %d = %d\n", acessa_num_esq(teste), acessa_simb_op(teste), acessa_num_dir(teste), subtracao(acessa_num_esq(teste), acessa_num_dir(teste), teste));
+				aux++;
+            }
+        }
+        else if(acessa_simb_op(teste) == '*')
+        {
+            if(multiplicacao(acessa_num_esq(teste), acessa_num_dir(teste), teste) == 42)
+            {
+                printf("%d %c %d = %d\n", acessa_num_esq(teste), acessa_simb_op(teste), acessa_num_dir(teste), subtracao(acessa_num_esq(teste), acessa_num_dir(teste), teste));
+				aux++;
+            }
+        }
+        else if(acessa_simb_op(teste) == '/' && acessa_num_dir(teste) != 0)
+        {
+            if(divisao(acessa_num_esq(teste), acessa_num_dir(teste), teste) == 42)
+            {
+                printf("%d %c %d = %d\n", acessa_num_esq(teste), acessa_simb_op(teste), acessa_num_dir(teste), divisao(acessa_num_esq(teste), acessa_num_dir(teste), teste));
+				aux++;
+            }
+        }
+        libera(teste);
+    }
+    if(aux == 0)
+	{
+		printf(":(\n");
+	}
+    return 0;
+}
