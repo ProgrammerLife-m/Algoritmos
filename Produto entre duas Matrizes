@@ -1,0 +1,62 @@
+#include <stdio.h>
+
+void produto_matriz(int n, int m, double A[][m], int a, int b, double B[][b]);
+void imprimir_matriz(int n, int m, double mat[][m]);
+
+void main(void)
+{
+    int nlin, ncol;
+    scanf("%d%d", &nlin, &ncol);
+    double matA[nlin][ncol];
+
+    int i, j;
+    for (i = 0; i < nlin; i++)
+    {
+        for (j = 0; j < ncol; j++)
+        {
+            scanf("%lf", &matA[i][j]);
+        }
+    }
+    int mlin, mcol;
+    scanf("%d%d", &mlin, &mcol);
+    double matB[mlin][mcol];
+
+    for (i = 0; i < mlin; i++)
+    {
+        for (j = 0; j < mcol; j++)
+        {
+            scanf("%lf", &matB[i][j]);
+        }
+    }
+    produto_matriz(nlin, ncol, matA, mlin, mcol, matB);
+}
+void imprimir_matriz(int n, int m, double mat[][m])
+{
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < m; j++)
+        {
+            printf("%.2lf ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+void produto_matriz(int n, int m, double A[][m], int a, int b, double B[][b])
+{
+    int i, j, k, resp = 0;
+    double acum, C[n][b];
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < m; j++)
+        {
+            acum = 0.0 for (k = 0; k < m; k++)
+            {
+                acum += A[i][k] * B[k][j];
+            }
+            C[i][j] = acum;
+        }
+    }
+    imprimir_matriz(n, b, C);
+}
