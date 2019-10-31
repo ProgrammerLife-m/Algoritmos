@@ -51,7 +51,8 @@ void produto_matriz(int n, int m, double A[][m], int a, int b, double B[][b])
     {
         for (j = 0; j < m; j++)
         {
-            acum = 0.0 for (k = 0; k < m; k++)
+            acum = 0.0; 
+            for (k = 0; k < m; k++)
             {
                 acum += A[i][k] * B[k][j];
             }
