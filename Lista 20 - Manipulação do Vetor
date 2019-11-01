@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+
+int *cria_vetor(int n)
+{
+	int *vet = malloc(sizeof vet * n);
+	assert(vet != NULL);
+	int i;
+	for(i = 0; i < n; i++)
+	{
+		vet[i] = 0;
+	}
+
+	return vet;
+}
+void libera_vetor(int *vet)
+{
+	free(vet);
+}
+void funcao_set(int x, int y, int valor, int *vet)
+{
+	int i;
+	for(i = x; i <= y; i++)
+	{
+		vet[i] = valor;
+	}
+}
+void funcao_seq(int x, int y, int *vet)
+{
+	int i, cont = 0;
+	for(i = x; i <= y; i++)
+	{
+		vet[i] = cont;
+		cont++;
+	}
+}
+void funcao_rev(int x, int y, int *vet)
+{
+	int i, j = y, aux = 0;
+	for(i = x; i <= x+(y-x)/2; i++)
+	{
+		aux = vet[i];
+		vet[i] = vet[j];
+		vet[j] = aux;
+		j--;
+	}
+}
+void funcao_add(int x1, int y1, int x2, int y2, int *vet)
+{
+	int i, j, aux = 0;
+	for(i = x1, j = x2; i <= y1 && j <= y2; i++, j++)
+	{
+		vet[i] = vet[i] + vet[j];
+	}
+}
+void funcao_sum(int x, int y, int save, int *vet)
+{
+	int i, sum = 0;
+	for(i = x; i <= y; i++)
+	{
+		sum += vet[i];
+	}
+	vet[save] = sum;
+}
+void funcao_prt(int x, int y, int *vet)
+{
+	int i;
+	for(i = x; i <= y; i++)
+	{
+		printf("%d ", vet[i]);
+	}
+	printf("\n");
+}
+
+
+int main(void)
+{
+	char comando[11];
+	int *vet = cria_vetor(100000000), aux = 0;
+	scanf("%s", comando);
+	while (strcmp(comando, "hlt") != 0)
+	{
+		if(strcmp(comando, "ini") == 0)
+		{
+			int tam;
+			scanf("%d", &tam);
+			vet = realloc(vet, sizeof vet * 2*tam);
+			aux = 1;
+
+		}
+		else if(strcmp(comando, "set") == 0)
+		{
+			int x, y, valor;
+			scanf("%d%d%d", &x, &y, &valor);
+			funcao_set(x, y, valor, vet);
+		}
+		else if(strcmp(comando, "seq") == 0)
+		{
+			int x, y;
+			scanf("%d%d", &x, &y);
+			funcao_seq(x, y, vet);
+		}
+		else if(strcmp(comando, "rev") == 0)
+		{
+			int x, y;
+			scanf("%d%d", &x, &y);
+			funcao_rev(x, y, vet);
+		}
+		else if(strcmp(comando, "add") == 0)
+		{
+			int x1, y1, x2, y2;
+			scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
+			funcao_add(x1, y1, x2, y2, vet);
+		}
+		else if(strcmp(comando, "sum") == 0)
+		{
+			int x, y, save;
+			scanf("%d%d%d", &x, &y, &save);
+			funcao_sum(x, y, save, vet);
+		}
+		else if(strcmp(comando, "prt") == 0)
+		{
+			int x, y;
+			scanf("%d%d", &x, &y);
+			funcao_prt(x, y, vet);
+		}
+		scanf("%s", comando);
+	}
+	libera_vetor(vet);
+
+	return 0;    
+}
