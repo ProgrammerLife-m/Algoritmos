@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <string.h>
+
+char *cria(int n)
+{
+	char *string = malloc(sizeof string * n);
+	assert(string != NULL);
+
+	return string;
+}
+int verificaSubstring(char *palavra, char *frase)
+{
+	char *compara_string = NULL;
+
+    if((compara_string = strstr(frase, palavra)) != NULL)
+    {
+        return 1;
+    }
+    return 0;
+}
+void resposta(int resp)
+{
+	if(resp == 0)
+	{
+		printf("o texto nao fala sobre patronos\n");
+	}
+	else
+	{
+		printf("o texto fala sobre patronos\n");
+	}
+}
+void libera(char *string)
+{
+	free(string);
+}
+void imprime_string(char *string)
+{
+	printf("%s\n", string);
+}
+void ler_string(char *string)
+{
+	int i = 0, j = 1;
+	char letra;
+	while ((letra = getchar()) != '\n' && letra != EOF && letra != '\0')
+	{
+		if (j == strlen(string) - 1)//antes de estourar o tamanho da string é necessário realocar
+		{
+			string = realloc(string, sizeof string * 2*strlen(string));
+			string = NULL;
+			j = 1;
+		}
+		string[i] = letra;
+		i++;
+		j++;
+	}
+}
+
+int main(void)
+{
+	char palavra[201]; 
+	scanf("%s\n", palavra);
+	
+	char *frase;
+	frase = cria(10);
+	ler_string(frase);
+	
+	resposta(verificaSubstring(palavra, frase));
+	
+	libera(frase);
+	return 0;
+}
