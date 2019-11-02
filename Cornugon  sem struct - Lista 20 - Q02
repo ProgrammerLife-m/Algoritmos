@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+	char tipo_dano[7];
+	int valor_dano, qturno;
+
+	scanf("%s %d %d", tipo_dano, &valor_dano, &qturno);
+	int total_dano = 0;
+
+	if(strcmp(tipo_dano, "CAUDA") == 0)
+	{
+		total_dano = valor_dano * qturno;
+	}
+	else if(strcmp(tipo_dano,"CUSPE") == 0)
+	{
+		total_dano = 2*valor_dano * qturno;
+	}
+	else if(strcmp(tipo_dano, "PATADA") == 0)
+	{
+		total_dano = (2*valor_dano - 5) * qturno;
+	}
+	printf("%d\n", total_dano);
+
+	return 0;
+}
