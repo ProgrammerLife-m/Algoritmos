@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int esq, dir, aux = 0;
+	char op;
+	while (scanf("%d %c %d", &esq, &op, &dir) != EOF)
+	{
+		int soma = 0, sub = 0, mult = 0, div = 0;
+		if(op == '+')
+		{
+			soma = esq + dir;
+			if(soma == 42)
+			{
+				printf("%d %c %d = %d\n", esq, op, dir, soma);
+				aux++;
+			}
+		}
+		else if(op == '-')
+		{
+			sub = esq - dir;
+			if(sub == 42)
+			{
+				printf("%d %c %d = %d\n", esq, op, dir, sub);
+				aux++;
+			}
+		}
+		else if(op == '*')
+		{
+			mult = esq * dir;
+			if(mult == 42)
+			{
+				printf("%d %c %d = %d\n", esq, op, dir, mult);
+				aux++;
+			}
+		}
+		else if(op == '/' && dir != 0)
+		{
+			div = esq / dir;
+			if(div == 42)
+			{
+				printf("%d %c %d = %d\n", esq, op, dir, div);
+				aux++;
+			}
+		}
+	}
+	if(aux == 0)
+	{
+		printf(":(\n");
+	}
+	return 0;
+}
